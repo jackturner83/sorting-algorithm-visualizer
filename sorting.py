@@ -30,4 +30,13 @@ class DrawInformation:
         self.block_height = round((self.height - self.TOP_PAD) / (self.max - self.min))
         self.start_x = self.SIDE_PAD // 2
         
+def generate_starting_list(n, min_val, max_val):
+    lst = []
+
+    for _ in range (n):
+        val = random.randint(min_val,max_val)
+        lst.append(lst)
+    
+    return lst
+
 
