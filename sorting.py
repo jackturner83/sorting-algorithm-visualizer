@@ -1,4 +1,5 @@
 from decimal import MIN_EMIN
+from venv import create
 import pygame
 import random
 pygame.init()
@@ -91,6 +92,13 @@ def main():
             # allows you to quit the program
             if event.type == pygame.QUIT:
                 run = False
+
+            if event.type != pygame.KEYDOWN: 
+                continue
+
+            if event.key == pygame.K_r:
+                lst = create_starting_list(n, min_val, max_val)
+                draw_info.set_list(lst)
 
     pygame.quit()
 
