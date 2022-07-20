@@ -3,6 +3,7 @@ import random
 pygame.init()
 
 class DrawInformation:
+    # board setup
     BLACK = 0, 0, 0
     WHITE = 255, 255, 255
     GREEN = 0, 255, 0
@@ -14,23 +15,28 @@ class DrawInformation:
     TOP_PAD = 150
 
     def __init__(self, width, height, lst):
+        # 
         self.width = width
         self.height = height
 
+        # get and display the surface
         self.window = pygame.display.set_mode((width, height))
         pygame.display.set_caption("Sorting Algorithm Visualization")
         self.set_list(lst)
 
     def set_list(self, lst):
+        # function which sets the list 
         self.lst = lst
         self.min_val = min(list)
         self.max_val = max(list)
 
+        # setting width and height of each block in our display
         self.block_width = round((self.width - self.SIDE_PAD) / len(lst))
         self.block_height = round((self.height - self.TOP_PAD) / (self.max - self.min))
         self.start_x = self.SIDE_PAD // 2
         
 def generate_starting_list(n, min_val, max_val):
+    # generate a starting
     lst = []
 
     for _ in range (n):
@@ -40,9 +46,11 @@ def generate_starting_list(n, min_val, max_val):
     return lst
 
 def main():
+    # main function which runs the program 
     run = True
     clock = pygame.time.Clock()
 
+    # creating loop which runs the program at 60 frames per second
     while run:
         clock.tick(60)
 
@@ -52,4 +60,7 @@ def main():
             if event == pygame.QUIT:
                 run = False
 
-    pygame.QUIT()
+    pygame.quit()
+
+if __name__ == "__main__":
+    main()
