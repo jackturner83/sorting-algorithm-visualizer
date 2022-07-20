@@ -1,3 +1,4 @@
+from decimal import MIN_EMIN
 import pygame
 import random
 pygame.init()
@@ -27,21 +28,25 @@ class DrawInformation:
     def set_list(self, lst):
         # function which sets the list 
         self.lst = lst
-        self.min_val = min(list)
-        self.max_val = max(list)
+        self.min_val = min(lst)
+        self.max_val = max(lst)
 
         # setting width and height of each block in our display
         self.block_width = round((self.width - self.SIDE_PAD) / len(lst))
-        self.block_height = round((self.height - self.TOP_PAD) / (self.max - self.min))
+        self.block_height = round((self.height - self.TOP_PAD) / (self.max_val - self.min_val))
         self.start_x = self.SIDE_PAD // 2
+
+def draw(draw_info):
+    draw_info.window.fill(draw_info.BACKGROUND_COLOR)
+    pygame.display.update()
         
-def generate_starting_list(n, min_val, max_val):
+def create_starting_list(n, min_val, max_val):
     # generate a starting
     lst = []
 
     for _ in range (n):
         val = random.randint(min_val,max_val)
-        lst.append(lst)
+        lst.append(val)
     
     return lst
 
@@ -50,14 +55,24 @@ def main():
     run = True
     clock = pygame.time.Clock()
 
+    n = 50
+    min_val = 0
+    max_val = 100
+
+    lst = create_starting_list(n, min_val, max_val)
+    draw_info = DrawInformation(800, 600, lst)
+    
     # creating loop which runs the program at 60 frames per second
     while run:
         clock.tick(60)
 
+        draw(draw_info)
+        
         pygame.display.update()
         
         for event in pygame.event.get():
-            if event == pygame.QUIT:
+            # allows you to quit the program
+            if event.type == pygame.QUIT:
                 run = False
 
     pygame.quit()
