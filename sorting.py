@@ -19,4 +19,10 @@ class DrawInformation:
         self.set_list(lst)
 
     def set_list(self, lst):
-        pass
+        self.lst = lst
+        self.min_val = min(list)
+        self.max_val = max(list)
+        
+
+        
+
